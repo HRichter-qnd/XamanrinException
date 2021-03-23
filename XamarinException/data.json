@@ -1,0 +1,8 @@
+[
+{"ch_id": "01234567", "ch_bez": "Charge1", "equip_id": 1111,"fname": "F 1", "a_version": "0000", "start_t": "26.03.2020 07:00:00"},
+{"ch_id": "01234568", "ch_bez": "Charge2", "equip_id": 2222,"fname": "F 1", "a_version": "0008", "start_t": "28.10.2020 23:04:38"},
+{"ch_id": "01234569", "ch_bez": "Charge3",	"equip_id": 3333, "fname": "L 10",	"a_version": "0004", "start_t": "08.11.2020 10:55:01"},
+{"ch_id": "12345678", "ch_bez": "Charge4",	"equip_id": 4444, "fname": "L 12",	"a_version": "0004", "start_t": "08.11.2020 10:55:13"},
+{"ch_id": "11223344", "ch_bez": "Charge5",	"equip_id": 5555, "fname": "L 13",	"a_version": "0004", "start_t": "10.11.2020 16:43:31"}
+]
+   

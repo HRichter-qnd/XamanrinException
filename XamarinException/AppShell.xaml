@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms" 
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:XamarinException.Views"
+       x:Name="shell"
+       Title="XamarinException"
+       x:Class="XamarinException.AppShell"
+       FlyoutBackgroundColor="{StaticResource Secondary}">
+       
+    <Shell.Resources>
+        <ResourceDictionary>
+            <Style x:Key="BaseStyle" TargetType="Element">
+                <Setter Property="Shell.BackgroundColor" Value="{StaticResource Primary}" />
+                <Setter Property="Shell.ForegroundColor" Value="{StaticResource Secondary}" />
+                <Setter Property="Shell.TitleColor" Value="{StaticResource Secondary}" />
+                <Setter Property="Shell.TitleColor" Value="{StaticResource Secondary}" />
+                <Setter Property="Shell.DisabledColor" Value="#B4FFFFFF" />
+                <Setter Property="Shell.UnselectedColor" Value="#95FFFFFF" />
+            </Style>
+            <!--<Style TargetType="TabBar" BasedOn="{StaticResource BaseStyle}" />-->
+            <Style TargetType="FlyoutItem" BasedOn="{StaticResource BaseStyle}" />
+
+            <Style x:Key="FloutItemStyle" TargetType="Grid">
+                <!--<Setter Property="BackgroundColor" Value="{StaticResource Secondary}"></Setter>-->
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <!--<Setter Property="BackgroundColor" Value="{StaticResource Secondary}" />-->
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}"/>
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+            
+            <Style Class="FlyoutItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <!--<Setter Property="BackgroundColor" Value="{StaticResource Secondary}" />-->
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                            <VisualState x:Name="Selected">
+                                <VisualState.Setters>
+                                    <Setter Property="BackgroundColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+          
+            <!--
+            Custom Style you can apply to any Flyout Item
+            -->
+            <Style Class="MenuItemLayoutStyle" TargetType="Layout" ApplyToDerivedTypes="True">
+                <Setter Property="VisualStateManager.VisualStateGroups">
+                    <VisualStateGroupList>
+                        <VisualStateGroup x:Name="CommonStates">
+                            <VisualState x:Name="Normal">
+                                <VisualState.Setters>
+                                    <Setter TargetName="FlyoutItemLabel" Property="Label.TextColor" Value="{StaticResource Primary}" />
+                                </VisualState.Setters>
+                            </VisualState>
+                        </VisualStateGroup>
+                    </VisualStateGroupList>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </Shell.Resources>
+
+
+    
+    <!-- 
+        When the Flyout is visible this defines the content to display in the flyout.
+        FlyoutDisplayOptions="AsMultipleItems" will create a separate flyout item for each child element    
+        https://docs.microsoft.com/dotnet/api/xamarin.forms.shellgroupitem.flyoutdisplayoptions?view=xamarin-forms
+    -->
+    <FlyoutItem x:Name="FlyoutItems" FlyoutDisplayOptions="AsMultipleItems">
+        <!--entry point for app shell adding items in code-->
+        <!--<ShellContent Title="Sync" Route="SyncPage" ContentTemplate="{DataTemplate local:SyncPage}" />-->
+    </FlyoutItem>
+
+
+    <!-- Shell Flyout Header-->
+    <Shell.FlyoutHeaderTemplate>
+        <DataTemplate>
+            <Grid BackgroundColor="{StaticResource Primary}">
+                <Label Text="OfflineDatenErfassung" HorizontalOptions="Center" TextColor="{StaticResource Secondary}"></Label>
+            </Grid>
+        </DataTemplate>
+    </Shell.FlyoutHeaderTemplate>
+
+    
+    <!-- Shell item template-->
+    <Shell.ItemTemplate>
+        <DataTemplate x:Name="ItemFlyoutGrid">
+            <Grid x:Name="FlyoutItemLayout" Style="{StaticResource FloutItemStyle}"
+                    HeightRequest="{x:OnPlatform Android=30}"
+                    ColumnSpacing="{x:OnPlatform UWP=0}"
+                    RowSpacing="{x:OnPlatform UWP=0}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label x:Name="FlyoutItemLabel"
+               Text="{Binding Title}"
+               FontSize="{x:OnPlatform Android=12, iOS=Small}"
+               HorizontalOptions="{x:OnPlatform UWP=Start}"
+               HorizontalTextAlignment="{x:OnPlatform UWP=Start}"
+               FontAttributes="{x:OnPlatform iOS=Bold}"
+               VerticalTextAlignment="Center">
+                    <Label.TextColor>
+                        <OnPlatform x:TypeArguments="Color">
+                            <OnPlatform.Platforms>
+                                <On Platform="Android"
+                            Value="{StaticResource Primary}" />
+                            </OnPlatform.Platforms>
+                        </OnPlatform>
+                    </Label.TextColor>
+                    <Label.Margin>
+                        <OnPlatform x:TypeArguments="Thickness">
+                            <OnPlatform.Platforms>
+                                <On Platform="Android"
+                            Value="10, 0, 0, 0" />
+                            </OnPlatform.Platforms>
+                        </OnPlatform>
+                    </Label.Margin>
+                    <Label.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <OnPlatform.Platforms>
+                                <On Platform="Android"
+                            Value="sans-serif-medium" />
+                            </OnPlatform.Platforms>
+                        </OnPlatform>
+                    </Label.FontFamily>
+                </Label>
+            </Grid>
+        </DataTemplate>
+    </Shell.ItemTemplate>
+
+</Shell>
